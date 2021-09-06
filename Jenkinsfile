@@ -5,7 +5,6 @@ pipeline {
         stage('build') {
             steps {
                 git branch: 'master', url: 'https://github.com/DawidKosior/blockrain.js'
-                sh '/usr/bin/npm install'
                 sh 'git pull origin master'
                 sh 'yarn build > logs1.txt'
             }
