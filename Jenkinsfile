@@ -6,7 +6,6 @@ pipeline {
             steps {
                 git branch: 'master', url: 'https://github.com/DawidKosior/blockrain.js'
                 sh 'git pull origin master'
-                sh 'yarn build > logs1.txt'
             }
             
             post {
