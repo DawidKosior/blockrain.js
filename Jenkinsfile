@@ -64,7 +64,7 @@ pipeline {
         		}
         		success {
         			mail to: 'd4wt0n@gmail.com',
-        			subject: 'Success on testing ${currentBuild.fullDisplayName}'
+        			subject: 'Success on testing ${currentBuild.fullDisplayName}',
         			body: 'Success on testing ${env.BUILD_URL}'
         		}
         	}
