@@ -8,7 +8,9 @@ pipeline {
             steps {
                 git branch: 'master', url: 'https://github.com/DawidKosior/blockrain.js'
                 sh "npm install -g yarn"
+                sh "npm install -g test"
                 sh "yarn install"
+                sh "test install"
                 sh 'git pull origin master'
                
             }
