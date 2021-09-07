@@ -3,15 +3,11 @@ pipeline {
     tools {nodejs "nodejs"}
     
     stages {
+    	withEnv(['PATH+NODE=/something=/path/to/node/bin']){
         stage('build') {
         
             steps {
-		    withEnv(['PATH+NODE=/something=/path/to/node/bin']) {
-				stage('Prepare') {
-				sh "npm install -g yarn"
-				sh "yarn install"
-	    		}	
-	}
+		    
                 git branch: 'master', url: 'https://github.com/DawidKosior/blockrain.js'
                 sh "npm install -g yarn"
                 sh "yarn install"
@@ -41,7 +37,7 @@ pipeline {
             
             
             
-        }
+        }}
         stage('Test') {
         	steps {
         		script {
