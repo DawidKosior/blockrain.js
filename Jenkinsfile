@@ -1,10 +1,18 @@
 pipeline {
     agent any
     tools {nodejs "nodejs"}
+    withEnv(['PATH+NODE=/something=/path/to/node/bin']) {
+        stage('Prepare') {
+        sh "npm install -g yarn"
+        sh "yarn install"
+    		}	
+	}
     stages {
         stage('build') {
             steps {
                 git branch: 'master', url: 'https://github.com/DawidKosior/blockrain.js'
+                sh "npm install -g yarn"
+                sh "yarn install"
                 sh 'git pull origin master'
             }
             
@@ -31,6 +39,33 @@ pipeline {
             
             
             
+        }
+        stage('Test') {
+        	steps {
+        		script {
+        			if (env.FAILED) {
+        				expression {
+        					currentBuild.result = 'ABORTED'
+        					error('Build is failed.')
+        				}
+        			}
+        		}
+        		sh 'yarn test > logs1.txt'
+        	}
+        	post {
+        		failure {
+        			emailext attachLog: true,
+        				attachmentsPattern: 'logs1.txt',
+        				to: 'd4wt0n@gmail.com',
+        				subject: "Failed on test stage: ${currentBuild.fullDisplayName}",
+        				body: "Error ${currentBuild.fullDisplayName}",
+        		}
+        		success {
+        			mail to: 'd4wt0n@gmail.com',
+        			subject: 'Success on testing ${currentBuild.fullDisplayName}'
+        			body: 'Success on testing ${env.BUILD_URL}'
+        		}
+        	}
         }
     }
 }
