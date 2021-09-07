@@ -1,14 +1,15 @@
 pipeline {
     agent any
     tools {nodejs "nodejs"}
-    withEnv(['PATH+NODE=/something=/path/to/node/bin']) {
-        stage('Prepare') {
-        sh "npm install -g yarn"
-        sh "yarn install"
-    		}	
-	}
+    
     stages {
         stage('build') {
+        withEnv(['PATH+NODE=/something=/path/to/node/bin']) {
+		stage('Prepare') {
+		sh "npm install -g yarn"
+		sh "yarn install"
+    		}	
+	}
             steps {
                 git branch: 'master', url: 'https://github.com/DawidKosior/blockrain.js'
                 sh "npm install -g yarn"
