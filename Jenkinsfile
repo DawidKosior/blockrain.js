@@ -47,7 +47,7 @@ pipeline {
         				}
         			}
         		}
-        		sh 'yarn test > logs2.txt'
+        		sh 'yarn run test > logs2.txt'
         	}
         	post {
         		failure {
