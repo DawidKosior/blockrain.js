@@ -58,7 +58,7 @@ pipeline {
         				attachmentsPattern: 'logs1.txt',
         				to: 'd4wt0n@gmail.com',
         				subject: "Failed on test stage: ${currentBuild.fullDisplayName}",
-        				body: "Error ${currentBuild.fullDisplayName}",
+        				body: "Error ${currentBuild.fullDisplayName}"
         		}
         		success {
         			mail to: 'd4wt0n@gmail.com',
