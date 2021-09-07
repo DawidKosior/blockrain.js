@@ -2,8 +2,8 @@ pipeline {
     agent any
     tools {nodejs "nodejs"}
     
-    stages {
-    	withEnv(['PATH+NODE=/something=/path/to/node/bin']){
+    withEnv(['PATH+NODE=/something=/path/to/node/bin']){ stages {
+    	
         stage('build') {
         
             steps {
@@ -37,7 +37,7 @@ pipeline {
             
             
             
-        }}
+        }
         stage('Test') {
         	steps {
         		script {
@@ -65,7 +65,7 @@ pipeline {
         		}
         	}
         }
-    }
+    }}
 }
 
 
