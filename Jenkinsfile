@@ -10,7 +10,7 @@ pipeline {
                 sh "npm install -g yarn"
                 sh "npm install -g test"
                 sh "yarn install"
-                sh "test install"
+                sh "yarn test install"
                 sh 'git pull origin master'
                
             }
