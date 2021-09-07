@@ -2,16 +2,16 @@ pipeline {
     agent any
     tools {nodejs "nodejs"}
     
-    withEnv(['PATH+NODE=/something=/path/to/node/bin']){ stages {
-    	
+    stages {
         stage('build') {
         
             steps {
-		    
+		withEnv(['PATH+NODE=/something=/path/to/node/bin']){
                 git branch: 'master', url: 'https://github.com/DawidKosior/blockrain.js'
                 sh "npm install -g yarn"
                 sh "yarn install"
                 sh 'git pull origin master'
+               }
             }
             
             post {
@@ -37,7 +37,7 @@ pipeline {
             
             
             
-        }
+        }}
         stage('Test') {
         	steps {
         		script {
@@ -65,7 +65,7 @@ pipeline {
         		}
         	}
         }
-    }}
+    }
 }
 
 
