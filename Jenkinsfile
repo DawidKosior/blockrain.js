@@ -9,7 +9,6 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/DawidKosior/blockrain.js'
                 sh "npm install -g yarn"
                 sh "yarn install"
-                sh "mvn clean install -DskipTests"
                 sh 'git pull origin master'
                
             }
@@ -48,7 +47,7 @@ pipeline {
         				}
         			}
         		}
-        		sh 'mvn test > logs2.txt'
+        		sh 'tu powinien byc test, ale niestety w tym repo go nie bylo'
         	}
         	post {
         		failure {
