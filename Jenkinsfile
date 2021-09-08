@@ -47,7 +47,6 @@ pipeline {
         				}
         			}
         		}
-        		sh 'tu powinien byc test, ale niestety w tym repo go nie bylo'
         	}
         	post {
         		failure {
