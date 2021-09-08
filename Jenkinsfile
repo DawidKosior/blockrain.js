@@ -80,9 +80,7 @@ pipeline {
                 sh 'docker build -t tetris -f Dockerfile .'
                 sh 'docker run tetris'
             }
-           
-                }
-                post {
+            post {
                     failure {
                          emailext attachLog: true,
                             attachmentsPattern: 'log3.txt',
@@ -96,6 +94,8 @@ pipeline {
                             body: "Success deploy ${env.BUILD_URL} "                        
                     }
                 }
+                }
+            
         }
         
         
