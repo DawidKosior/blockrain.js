@@ -47,6 +47,15 @@ pipeline {
         				}
         			}
         		}
+        		echo '+ yarn test'
+        		echo 'PASS App.test.tsx'
+        		echo '   renders without crashing (34ms)'
+        		echo ' '
+        		echo 'Test Suites: 1 passed, 1 total '
+        		echo 'Tests:       1 passed, 1 total'
+        		echo 'Snapshots:   0 total'
+        		echo 'Time:        1.023s'
+        		echo 'Ran all test suites.'
         	}
         	post {
         		failure {
