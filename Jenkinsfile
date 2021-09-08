@@ -72,6 +72,32 @@ pipeline {
         		}
         	}
         }
+        
+        
+        stage('Deploy') {
+            steps {
+                echo 'Deploying'
+            }
+                sh 'docker build -t tetris -f Dockerfile .'
+                sh 'docker run tetris'
+                }
+                post {
+                    failure {
+                         emailext attachLog: true,
+                            attachmentsPattern: 'log3.txt',
+                            to:'d4wt0n@gmail.com',
+                            subject: "Failed: ${currentBuild.fullDisplayName}",
+                            body: "error"        
+                    }
+                    success {
+                        mail to: 'd4wt0n@gmail.com',
+                            subject: "Success: ${currentBuild.fullDisplayName}",
+                            body: "Success deploy ${env.BUILD_URL} "                        
+                    }
+                }
+        }
+        
+        
         }
         
     }
