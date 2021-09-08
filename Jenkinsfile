@@ -77,9 +77,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying'
-            }
                 sh 'docker build -t tetris -f Dockerfile .'
                 sh 'docker run tetris'
+            }
+           
                 }
                 post {
                     failure {
